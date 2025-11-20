@@ -1,0 +1,47 @@
+1. Initialize goal_state = {'A': '0', 'B': '0'}  # All rooms clean
+2. Initialize cost = 0
+
+3. Take user input:
+    - location_input ← current location of vacuum (A or B)
+    - status_input ← status of current location (0: Clean, 1: Dirty)
+    - status_input_complement ← status of other location
+
+4. If location_input is 'A':
+    4.1 If status_input is '1':
+        - Suck dirt at A → set goal_state['A'] = '0'
+        - cost += 1
+    4.2 If status_input_complement is '1':
+        - Move to B → cost += 1
+        - Suck dirt at B → goal_state['B'] = '0'
+        - cost += 1
+    4.3 Else:
+        - No action at B (already clean)
+
+    4.4 If status_input is '0' (A is clean):
+        - If B is dirty:
+            - Move to B → cost += 1
+            - Suck → goal_state['B'] = '0', cost += 1
+        - Else:
+            - No action (B is clean)
+
+5. Else if location_input is 'B':
+    5.1 If status_input is '1':
+        - Suck dirt at B → goal_state['B'] = '0'
+        - cost += 1
+    5.2 If status_input_complement is '1':
+        - Move to A → cost += 1
+        - Suck dirt at A → goal_state['A'] = '0'
+        - cost += 1
+    5.3 Else:
+        - No action at A (already clean)
+
+    5.4 If status_input is '0' (B is clean):
+        - If A is dirty:
+            - Move to A → cost += 1
+            - Suck → goal_state['A'] = '0', cost += 1
+        - Else:
+            - No action (A is clean)
+
+6. Output:
+    - Final goal_state
+    - Total cost (Performance Measurement)
