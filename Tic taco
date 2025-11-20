@@ -1,0 +1,75 @@
+1.Game State Representation
+
+  The board is stored as a dictionary board = {1:' ', 2:' ', ... 9:' '}.
+  
+  Positions are numbered like a keypad:
+  
+  1 | 2 | 3
+  -+-+-
+  4 | 5 | 6
+  -+-+-
+  7 | 8 | 9
+
+2.Player vs Bot
+  
+  O = Player
+  
+  X = Bot (AI)
+
+3.Rules Implemented
+
+  Bot moves first.
+  
+  Player moves second.
+  
+  Each move:
+
+    If space is free → place symbol.
+    
+    Check for win or draw.
+    
+    If someone wins or board full → game ends.
+
+4.The Algorithm Used → Minimax
+
+  Minimax Algorithm is a backtracking algorithm used in decision-making and game theory.
+  
+  Idea:
+  
+    Assume opponent plays optimally.
+    
+    The Bot (X) tries to maximize its score.
+    
+    The Player (O) tries to minimize the Bot’s score.
+  
+  Scores:
+  
+    +1 → Bot wins
+    
+    -1 → Player wins
+    
+    0 → Draw
+
+  At each step:
+  
+    Bot simulates all possible moves.
+    
+    Recursively plays the game until terminal state (win/loss/draw).
+    
+    Chooses the move that guarantees the best score against an optimal opponent.
+
+5.Flow of the Game
+  
+  Bot uses compMove() → calculates best move using minimax.
+  
+  Player enters a position → playerMove().
+  
+  After every move → check for win/draw.
+  
+  Game continues until either:
+  
+    Bot wins,
+    
+    Player wins, or
+    
+    It’s a draw.
