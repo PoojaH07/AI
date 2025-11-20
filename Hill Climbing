@@ -1,0 +1,16 @@
+def hill_climbing(N):
+    state = random_board(N)
+    h = heuristic(state)
+   
+    while True:
+        if h == 0:
+            return state  # Goal found
+       
+        neighbors = all_possible_moves(state)
+        next_state = state_with_lowest_h(neighbors)
+        next_h = heuristic(next_state)
+       
+        if next_h >= h:
+            return state  # Local minimum or goal
+       
+        state, h = next_state, next_h
